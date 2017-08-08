@@ -42,8 +42,6 @@ return [
         'migrate' => [
             'class' => 'yii\console\controllers\MigrateController',
             'migrationNamespaces' => [
-                'modules\payment\migrations',
-                'modules\support\migrations',
                 'modules\users\migrations',
             ],
             'migrationPath' => null
