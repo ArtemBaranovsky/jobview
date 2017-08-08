@@ -1,0 +1,4 @@
+tmp/*
+vk/*
+!tmp/.gitkeep
+!vk/.gitkeep
