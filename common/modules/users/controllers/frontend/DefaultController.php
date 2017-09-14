@@ -2,11 +2,13 @@
 
 namespace modules\users\controllers\frontend;
 
+use modules\users\models\BaseSession;
 use yii;
 use yii\web\Cookie;
 use yii\web\Controller;
 use modules\users\Module;
 use yii\filters\VerbFilter;
+use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 use yii\web\ForbiddenHttpException;
 use modules\users\models\frontend\Log;
@@ -28,7 +30,9 @@ class DefaultController extends Controller{
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
-                    'logout' => ['POST'],
+                    'logout'         => ['POST'],
+                    'devices-clear'  => ['POST'],
+                    'devices-delete' => ['POST'],
                 ],
             ],
         ];
@@ -58,6 +62,48 @@ class DefaultController extends Controller{
         return $this->render('index', [
             'model' => $model
         ]);
+    }
+
+    /**
+     * @return string
+     */
+    public function actionDevices()
+    {
+        $dataProvider = new ActiveDataProvider([
+            'query' => BaseSession::find()->where(['user_id' => Yii::$app->user->id]),
+            'sort' => [
+                'defaultOrder' => ['last_action' => SORT_DESC]
+            ]
+        ]);
+
+        return $this->render('devices', [
+            'dataProvider' => $dataProvider
+        ]);
+    }
+
+    /**
+     * @return yii\web\Response
+     */
+    public function actionDevicesClear()
+    {
+        Yii::$app->user->identity->resetAuth(null, true);
+
+        Yii::$app->session->setFlash('success', Module::t('main', 'MESSAGE_DEVICES_CLEAR_SUCCESS'));
+
+        return $this->redirect(['devices']);
+    }
+
+    /**
+     * @param $id
+     * @return yii\web\Response
+     */
+    public function actionDevicesDelete($id)
+    {
+        Yii::$app->user->identity->resetAuth($id, true);
+
+        Yii::$app->session->setFlash('success', Module::t('main', 'MESSAGE_DEVICES_DELETE_SUCCESS'));
+
+        return $this->redirect(['devices']);
     }
 
     /**

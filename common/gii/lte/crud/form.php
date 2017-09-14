@@ -3,8 +3,9 @@
 /* @var $form yii\widgets\ActiveForm */
 /* @var $generator yii\gii\generators\crud\Generator */
 
-echo $form->field($generator, 'titleUpdate');
+echo $form->field($generator, 'titleIndex');
 echo $form->field($generator, 'titleCreate');
+echo $form->field($generator, 'titleUpdate');
 echo $form->field($generator, 'modelClass');
 echo $form->field($generator, 'searchModelClass');
 echo $form->field($generator, 'controllerClass');

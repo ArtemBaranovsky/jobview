@@ -1,7 +1,4 @@
 <?php
-
-define('IS_DEV', true);
-
 return [
     'components' => [
         'db' => [
@@ -10,6 +7,9 @@ return [
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8mb4',
+        ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

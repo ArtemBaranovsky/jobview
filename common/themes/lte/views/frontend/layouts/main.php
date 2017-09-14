@@ -92,6 +92,12 @@ $push_menu       = isset($_COOKIE['push_menu']) && $_COOKIE['push_menu'] == 'clo
                                         <?= Yii::t('app', 'LINK_SETTING') ?>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="<?= Url::to(['/users/default/devices']) ?>">
+                                        <i class="fa fa-desktop"></i>
+                                        <?= Yii::t('app', 'LINK_DEVICES') ?>
+                                    </a>
+                                </li>
                                 <li class="divider"></li>
                                 <li>
                                     <a href="<?= Url::to(['/users/default/logout']) ?>" data-method="post">
@@ -114,9 +120,27 @@ $push_menu       = isset($_COOKIE['push_menu']) && $_COOKIE['push_menu'] == 'clo
                 <!-- sidebar menu: : style can be found in sidebar.less -->
                 <ul class="sidebar-menu">
                     <li id="place-blank">
-                        <a href="<?= Url::to(['/--------']) ?>">
+                        <a href="<?= Url::to(['/']) ?>">
+                            <i class="fa fa-coffee"></i>
+                            <span>Тестовая ссылка #1</span>
+                        </a>
+                    </li>
+                        <li id="place-blank">
+                        <a href="<?= Url::to(['/']) ?>">
                             <i class="fa fa-envelope"></i>
-                            <span>-----------</span>
+                            <span>Тестовая ссылка #2</span>
+                        </a>
+                    </li>
+                    <li id="place-blank">
+                        <a href="<?= Url::to(['/']) ?>">
+                            <i class="fa fa-folder-open"></i>
+                            <span>Тестовая ссылка #3</span>
+                        </a>
+                    </li>
+                    <li id="place-blank">
+                        <a href="<?= Url::to(['/']) ?>">
+                            <i class="fa fa-pie-chart"></i>
+                            <span>Тестовая ссылка #4</span>
                         </a>
                     </li>
                 </ul>

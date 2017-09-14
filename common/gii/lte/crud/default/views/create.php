@@ -4,23 +4,20 @@ use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
-/* @var $generator yii\gii\generators\crud\Generator */
+/* @var $generator \common\gii\lte\crud\Generator */
 
 echo "<?php\n";
 ?>
-
-use yii\helpers\Html;
-
 
 /* @var $this yii\web\View */
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
 
 $this->title = <?= $generator->generateString('Create ' . Inflector::camel2words(StringHelper::basename($generator->modelClass))) ?>;
 $this->params['pageTitle']     = '<?= $generator->titleCreate ?>';
-$this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>, 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '<?= $generator->titleIndex ?>', 'url' => ['index']];
 $this->params['breadcrumbs'][] = '<?= $generator->titleCreate ?>';
 ?>
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-create box">
+<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-create">
 
     <?= "<?= " ?>$this->render('_form', [
         'model' => $model,

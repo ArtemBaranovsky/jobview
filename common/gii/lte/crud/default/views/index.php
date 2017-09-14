@@ -4,7 +4,7 @@ use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
-/* @var $generator yii\gii\generators\crud\Generator */
+/* @var $generator \common\gii\lte\crud\Generator */
 
 $urlParams = $generator->generateUrlParams();
 $nameAttribute = $generator->getNameAttribute();
@@ -20,7 +20,7 @@ use <?= $generator->indexWidgetType === 'grid' ? "yii\\grid\\GridView" : "yii\\w
 <?= !empty($generator->searchModelClass) ? "/* @var \$searchModel " . ltrim($generator->searchModelClass, '\\') . " */\n" : '' ?>
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title                   = <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>;
+$this->title                   = '<?= $generator->titleIndex ?>';
 $this->params['pageTitle']     = $this->title;
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -62,7 +62,26 @@ $this->params['breadcrumbs'][] = $this->title;
         }
         ?>
 
-        ['class' => 'yii\grid\ActionColumn'],
+        [
+            'class'          => 'common\widgets\ActionColumn',
+            'firstButton'    => 'view',
+            'hiddenButtons'  => ['update', 'hr', 'delete'],
+            'buttonOptions'  => [
+                'delete' => function ($model){
+                    $title       = Yii::t('app', 'CONFIRM_TITLE');
+                    $description = 'Вы уверены что хотите удалить данную запись?';
+
+                    $options = [
+                        'toggle'        => 'confirm',
+                        'method'        => 'post',
+                        'title'         => $title,
+                        'description'   => $description,
+                    ];
+
+                    return ['data' => $options];
+                }
+            ]
+        ]
         ],
         ]); ?>
     <?php else: ?>

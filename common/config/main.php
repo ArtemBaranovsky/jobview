@@ -30,6 +30,18 @@ return [
             'assignmentFile' => '@modules/rbac/data/assignments.php',
             'ruleFile' => '@modules/rbac/data/rules.php',
         ],
+        'session' => [
+            'class' => 'yii\web\DbSession',
+            'sessionTable' => 'app_session',
+            'writeCallback' => function ($session) {
+                return [
+                    'user_id'     => Yii::$app->user->id,
+                    'ip'          => Yii::$app->request->userIP,
+                    'ua'          => Yii::$app->request->userAgent,
+                    'last_action' => time(),
+                ];
+            },
+        ],
         'i18n' => [
             'translations' => [
                 'app*' => [

@@ -4,7 +4,7 @@ use yii\helpers\Inflector;
 use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
-/* @var $generator yii\gii\generators\crud\Generator */
+/* @var $generator \common\gii\lte\crud\Generator */
 
 $urlParams = $generator->generateUrlParams();
 
@@ -18,40 +18,42 @@ use yii\widgets\DetailView;
 /* @var $model <?= ltrim($generator->modelClass, '\\') ?> */
 
 $this->title = $model-><?= $generator->getNameAttribute() ?>;
-$this->params['breadcrumbs'][] = ['label' => <?= $generator->generateString(Inflector::pluralize(Inflector::camel2words(StringHelper::basename($generator->modelClass)))) ?>, 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => '<?= $generator->titleIndex ?>', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['pageTitle']     = $this->title;
 ?>
-<div class="<?= Inflector::camel2id(StringHelper::basename($generator->modelClass)) ?>-view box">
-
-
-    <p>
-        <?= "<?= " ?>Html::a(<?= $generator->generateString('Update') ?>, ['update', <?= $urlParams ?>], ['class' => 'btn btn-primary']) ?>
-        <?= "<?= " ?>Html::a(<?= $generator->generateString('Delete') ?>, ['delete', <?= $urlParams ?>], [
+<div class="box">
+    <div class="box-header">
+        <?= "<?= " ?>Html::a('<i class="fa fa-edit"></i> Изменить', ['update', <?= $urlParams ?>], ['class' => 'btn btn-success']) ?>
+        <?= "<?= " ?>Html::a('<i class="fa fa-times"></i> Удалить', ['delete', <?= $urlParams ?>], [
             'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => <?= $generator->generateString('Are you sure you want to delete this item?') ?>,
-                'method' => 'post',
+                'data' => [
+                'toggle'        => 'confirm',
+                'method'        => 'post',
+                'title'         => Yii::t('app', 'CONFIRM_TITLE'),
+                'description'   => 'Вы уверены что хотите удалить данную запись?',
+            ]
+        ]) ?>
+    </div>
+
+    <div class="box-body no-padding">
+        <?= "<?= " ?>DetailView::widget([
+            'model' => $model,
+            'attributes' => [
+    <?php
+    if (($tableSchema = $generator->getTableSchema()) === false) {
+        foreach ($generator->getColumnNames() as $name) {
+            echo "            '" . $name . "',\n";
+        }
+    } else {
+        foreach ($generator->getTableSchema()->columns as $column) {
+            $format = $generator->generateColumnFormat($column);
+            echo "            '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
+        }
+    }
+    ?>
             ],
         ]) ?>
-    </p>
-
-    <?= "<?= " ?>DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-<?php
-if (($tableSchema = $generator->getTableSchema()) === false) {
-    foreach ($generator->getColumnNames() as $name) {
-        echo "            '" . $name . "',\n";
-    }
-} else {
-    foreach ($generator->getTableSchema()->columns as $column) {
-        $format = $generator->generateColumnFormat($column);
-        echo "            '" . $column->name . ($format === 'text' ? "" : ":" . $format) . "',\n";
-    }
-}
-?>
-        ],
-    ]) ?>
+    </div>
 
 </div>

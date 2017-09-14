@@ -35,6 +35,7 @@ return [
     'LINK_HOME'                             => 'Главная',
     'LINK_PAYMENT'                          => 'Финансы',
     'LINK_LIST_USERS'                       => 'Пользователи',
+    'LINK_DEVICES'                          => 'Устройства',
 
     'CONFIRM_TITLE'                         => 'Внимание!',
     'CONFIRM_DELETE'                        => 'Вы уверены, что хотите удалить данную запись?',

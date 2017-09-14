@@ -29,12 +29,22 @@ return [
     'ATTR_UTM_TERM'                                                  => 'UTM Ключевое слово',
     'ATTR_UTM_CONTENT'                                               => 'UTM Содержимое компании',
 
+    'ATTR_SESSION_ID'                                                => 'ID',
+    'ATTR_SESSION_USER_ID'                                           => 'Пользователь',
+    'ATTR_SESSION_IP'                                                => 'IP Адрес',
+    'ATTR_SESSION_UA'                                                => 'User Agent',
+    'ATTR_SESSION_LAST_ACTION'                                       => 'Последняя активность',
+    'ATTR_SESSION_EXPIRE'                                            => 'Срок действия',
+    'ATTR_SESSION_DATA'                                              => 'Данные',
+
     'BTN_REGISTRATION'                                               => 'Зарегистрироваться',
     'BTN_LOGIN'                                                      => 'Войти',
     'PASSWORD_RECOVERY'                                              => 'Забыли пароль?',
     'BTN_HOME'                                                       => 'На главную',
     'BTN_PASSWORD_RECOVERY'                                          => 'Восстановить пароль',
     'BTN_SET_PASSWORD'                                               => 'Изменить пароль',
+    'BTN_CLEAR_DEVICES'                                              => 'Завершить все сеансы',
+    'BTN_DEVICES_DELETE'                                             => 'Завершить сеанс',
 
     'TITLE_LOGIN'                                                    => 'Авторизация',
     'TITLE_REGISTRATION'                                             => 'Регистрация',
@@ -48,7 +58,9 @@ return [
     'TITLE_UNSUBSCRIBE_NEWS'                                         => 'Отписка от новостей',
     'TITLE_UNSUBSCRIBE_NOTIFICATIONS'                                => 'Отписка от оповещений',
 
-    'CONFIRM_DELETE_DESCRIPTION_{user}'                              => 'Вы уверены чтохотите удалить пользователя «{user}»',
+    'CONFIRM_DELETE_DESCRIPTION_{user}'                              => 'Вы уверены что хотите удалить пользователя «{user}»',
+    'CONFIRM_DELETE_DEVICE_DESCRIPTION'                              => 'Вы уверены что хотите завершить сеанс данного устройства?',
+    'CONFIRM_DELETE_DEVICES_CLEAR_DESCRIPTION'                       => 'Вы уверены что хотите завершить все сеансы?',
 
     'ERROR_INCORRECT_EMAIL'                                          => 'Неверный email.',
     'ERROR_INCORRECT_PASSWORD'                                       => 'Неверный пароль.',
@@ -60,6 +72,8 @@ return [
     'ERROR_COMPARE_PASSWORD'                                         => 'Пароли не совпадают.',
     'ERROR_INCORRECT_PASSWORD_OLD'                                   => 'Старый пароль введен неверно.',
 
+    'MESSAGE_DEVICES_CLEAR_SUCCESS'                                  => 'Все сеансы успешно завершены!',
+    'MESSAGE_DEVICES_DELETE_SUCCESS'                                 => 'Сеанс успешно завершен!',
     'MESSAGE_RECOVERY_PASSWORD_SEND_{email}'                         => 'На {email} была отправлена дальнейшая инструкция по восстановлению пароля.',
     'MESSAGE_RECOVERY_PASSWORD_EMAIL_{url}'                          => 'Для восстановления пароля перейдите по ссылке: {url}',
     'MESSAGE_RECOVERY_PASSWORD_SUCCESS'                              => 'Ваш пароль успешно изменен!',

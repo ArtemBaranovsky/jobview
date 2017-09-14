@@ -150,6 +150,14 @@ class BaseUsers extends yii\db\ActiveRecord implements IdentityInterface
     }
 
     /**
+     * Генерируем Auth Key
+     */
+    public function generateAuthKey()
+    {
+        $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    /**
      * @inheritdoc
      */
     public function beforeSave($insert)
@@ -159,6 +167,8 @@ class BaseUsers extends yii\db\ActiveRecord implements IdentityInterface
          */
         if ($this->isNewRecord){
             $this->generateSubscribeNewsCode();
+        }elseif ($this->getOldAttribute('password') != $this->password){
+            $this->resetAuth();
         }
 
         /**
@@ -192,6 +202,30 @@ class BaseUsers extends yii\db\ActiveRecord implements IdentityInterface
             'ip' => Yii::$app->request->userIP,
             'ua' => Yii::$app->request->userAgent,
         ]);
+    }
+
+    /**
+     * Сбрасываем авторизацию
+     * @param bool $session_id
+     * @param bool $save
+     */
+    public function resetAuth($session_id = null, $save = false)
+    {
+        $this->generateAuthKey();
+
+        $where = ['user_id' => $this->id];
+
+        if ($session_id !== null){
+            $where['id'] = $session_id;
+        }
+
+        Yii::$app->db->createCommand()
+            ->delete(Yii::$app->session->sessionTable, $where)
+            ->execute();
+
+        if ($save === true){
+            $this->save();
+        }
     }
 
     /**

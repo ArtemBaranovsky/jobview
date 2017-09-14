@@ -25,7 +25,10 @@ class Bootstrap implements BootstrapInterface
             $rules['user']                                   = 'users/default/index';
             $rules['login']                                  = 'users/default/login';
             $rules['logout']                                 = 'users/default/logout';
+            $rules['user/devices']                           = 'users/default/devices';
             $rules['registration']                           = 'users/default/registration';
+            $rules['user/devices/clear']                     = 'users/default/devices-clear';
+            $rules['user/devices/delete/<id:(.*)>']          = 'users/default/devices-delete';
             $rules['password-recovery']                      = 'users/default/password-recovery';
             $rules['user/activate/<code:(.*)>']              = 'users/default/activate';
             $rules['password-set/<code:(.*)>']               = 'users/default/set-password';

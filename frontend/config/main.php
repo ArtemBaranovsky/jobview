@@ -29,7 +29,7 @@ return [
             'enableCsrfCookie' => false
         ],
         'user' => [
-            'identityClass' => 'modules\users\models\backend\Users',
+            'identityClass' => 'modules\users\models\frontend\Users',
             'enableAutoLogin' => true,
             'loginUrl' => ['/users/default/login']
         ],

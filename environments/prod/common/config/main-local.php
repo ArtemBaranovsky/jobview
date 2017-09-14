@@ -1,7 +1,4 @@
 <?php
-
-define('IS_DEV', false);
-
 return [
     'components' => [
         'db' => [
@@ -13,6 +10,9 @@ return [
             'enableSchemaCache' => true,
             'schemaCacheDuration' => 3600,
             'schemaCache' => 'cache',
+        ],
+        'cache' => [
+            'class' => 'yii\caching\FileCache',
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',

@@ -29,8 +29,9 @@ use yii\web\Controller;
  */
 class Generator extends \yii\gii\Generator
 {
-    public $titleUpdate = 'Update';
-    public $titleCreate = 'Create';
+    public $titleIndex  = '';
+    public $titleUpdate = '';
+    public $titleCreate = '';
     public $modelClass;
     public $controllerClass;
     public $viewPath;
@@ -43,13 +44,12 @@ class Generator extends \yii\gii\Generator
      */
     public $enablePjax = false;
 
-
     /**
      * @inheritdoc
      */
     public function getName()
     {
-        return 'CRUD Generator';
+        return '[LTE] CRUD Generator';
     }
 
     /**
@@ -68,7 +68,7 @@ class Generator extends \yii\gii\Generator
     {
         return array_merge(parent::rules(), [
             [['controllerClass', 'modelClass', 'searchModelClass', 'baseControllerClass'], 'filter', 'filter' => 'trim'],
-            [['modelClass', 'controllerClass', 'baseControllerClass', 'indexWidgetType', 'titleUpdate', 'titleCreate'], 'required'],
+            [['modelClass', 'controllerClass', 'baseControllerClass', 'indexWidgetType', 'titleUpdate', 'titleCreate', 'titleIndex'], 'required'],
             [['searchModelClass'], 'compare', 'compareAttribute' => 'modelClass', 'operator' => '!==', 'message' => 'Search Model Class must not be equal to Model Class.'],
             [['modelClass', 'controllerClass', 'baseControllerClass', 'searchModelClass'], 'match', 'pattern' => '/^[\w\\\\]*$/', 'message' => 'Only word characters and backslashes are allowed.'],
             [['modelClass'], 'validateClass', 'params' => ['extends' => BaseActiveRecord::className()]],
@@ -80,7 +80,7 @@ class Generator extends \yii\gii\Generator
             [['modelClass'], 'validateModelClass'],
             [['enableI18N', 'enablePjax'], 'boolean'],
             [['messageCategory'], 'validateMessageCategory', 'skipOnEmpty' => false],
-            [['titleUpdate', 'titleCreate'], 'string', 'min' => 1, 'max' => 50],
+            [['titleUpdate', 'titleCreate', 'titleIndex'], 'string', 'min' => 1, 'max' => 50],
             ['viewPath', 'safe'],
         ]);
     }
@@ -98,6 +98,10 @@ class Generator extends \yii\gii\Generator
             'indexWidgetType' => 'Widget Used in Index Page',
             'searchModelClass' => 'Search Model Class',
             'enablePjax' => 'Enable Pjax',
+
+            'titleIndex'  => 'Заголовок главной страницы',
+            'titleUpdate' => 'Заголовок страницы изменения',
+            'titleCreate' => 'Заголовок страницы добавления',
         ]);
     }
 
