@@ -101,6 +101,11 @@ return [
                 'actions'     => ['error'],
                 'controllers' => ['main/default'],
             ],
+            [
+                'allow'       => true,
+                'controllers' => ['debug/default'],
+                'roles'       => ['?'],
+            ],
         ],
     ],
 ];

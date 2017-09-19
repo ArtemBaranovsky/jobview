@@ -64,6 +64,11 @@ return [
                 'controllers' => ['users/default'],
                 'roles'       => ['?'],
             ],
+            [
+                'allow'       => true,
+                'controllers' => ['debug/default'],
+                'roles'       => ['?'],
+            ],
         ],
     ],
 
