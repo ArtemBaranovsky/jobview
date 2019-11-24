@@ -18,7 +18,8 @@ return [
     ],
     'modules' => [
         'main' => ['class' => 'modules\main\Module'],
-        'users' => ['class' => 'modules\users\Module']
+        'users' => ['class' => 'modules\users\Module'],
+		'gii' => ['class' => 'yii\gii\Module']
     ],
     'components' => [
         'view' => [

@@ -20,6 +20,9 @@ return [
         'request' => [
             'baseUrl'          => '/backend',
             'enableCsrfCookie' => false,
+            'parsers' => [
+                'application/*' => 'yii\web\JsonParser'
+                ],
         ],
         'view' => [
             'theme' => 'themes\lte\Theme'
@@ -68,6 +71,11 @@ return [
                 'allow'       => true,
                 'controllers' => ['debug/default'],
                 'roles'       => ['?'],
+            ],
+            [
+                'allow'       => true,
+                'controllers' => ['jobs'],
+                'roles'       => ['@'],
             ],
         ],
     ],
