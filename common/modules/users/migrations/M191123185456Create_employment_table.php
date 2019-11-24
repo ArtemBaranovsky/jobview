@@ -18,6 +18,15 @@ class M191123185456Create_employment_table extends Migration
             'id' => $this->primaryKey(),
             'title' => $this->string()->notNull(),
         ]);
+
+        $this->batchInsert('{{%employment}}', ['title'], [
+                ['полная занятость'],
+                ['частичная занятость'],
+                ['удаленная работа'],
+                ['готовы взять студента'],
+                ['готовы взять человека с инвалидностью'],
+            ]
+        );
     }
 
     /**
